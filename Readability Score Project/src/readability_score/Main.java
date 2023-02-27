@@ -1,17 +1,25 @@
 package readability_score;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char[] inp = sc.nextLine().toCharArray();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String input = reader.readLine();
+            String[] sentences = input.split("[!.?]+");
+            int totalWords = input.split(" ").length;
+            System.out.println(totalWords / (double) sentences.length);
 
-        String res = inp.length > 100 ? "HARD" : "EASY";
-        System.out.println(res);
-
+            System.out.println((totalWords / sentences.length > 10 ? "HARD" : "EASY"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
 /*⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢾⡿⠟⢛⢻⠻⡽⢛⠛⠛⠛⠳⣽⣳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⠋⠀⠐⡌⢦⡙⢆⠁⠀⠀⠀⠀⠈⢷⡝⣆⠀⠀⠀⠀⢀⣀⣠⣤⢴⣶⣶⣶⠂⠀⠀⠀⡀⠀⠀⠀
