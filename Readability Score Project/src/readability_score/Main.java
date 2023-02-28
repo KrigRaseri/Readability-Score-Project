@@ -1,20 +1,17 @@
 package readability_score;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
-public class ReadMain {
+public class Main {
     public static void main(String[] args) {
-        
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String input = reader.readLine();
-            String[] sentences = input.split("[!.?]+");
-            int totalWords = input.split(" ").length;
-            System.out.println(totalWords / (double) sentences.length);
+//Readability Score Project/src/in.txt
+        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+            ARI ari = new ARI();
+            ari.runARI(reader, ari);
 
-            System.out.println((totalWords / sentences.length > 10 ? "HARD" : "EASY"));
         } catch (IOException e) {
             e.printStackTrace();
         }
