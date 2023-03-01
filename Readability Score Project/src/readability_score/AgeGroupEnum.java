@@ -1,29 +1,36 @@
 package readability_score;
 
+/**
+ * Enum class, holds the value based on the readability scores, and the corresponding age group to said score.
+ *
+ * @author Krig Raseri (pen name)
+ * */
 public class AgeGroupEnum {
 
     enum AgeGroup {
-        ONE(1, "5-6", "Kindergarten"), TWO(2, "6-7", "First Grade"),
-        THREE(3, "7-8", "Second Grade"), FOUR(4, "8-9", "Third Grade"),
-        FIVE(5, "9-10", "Fourth Grade"), SIX(6, "10-11", "Fifth Grade"),
-        SEVEN(7, "11-12", "Sixth Grade"), EIGHT(8, "12-13", "Seventh Grade"),
-        NINE(9, "13-14", "Eighth Grade"), TEN(10, "14-15", "Ninth Grade"),
-        ELEVEN(11, "15-16", "Tenth Grade"), TWELVE(12, "16-17", "Eleventh Grade"),
-        THIRTEEN(13, "17-18", "Twelfth Grade"), FOURTEEN(14, "18-22", "College");
+        ONE(1, "6"), TWO(2, "7"),
+        THREE(3, "8"), FOUR(4, "9"),
+        FIVE(5, "10"), SIX(6, "11"),
+        SEVEN(7, "12"), EIGHT(8, "13"),
+        NINE(9, "14"), TEN(10, "15"),
+        ELEVEN(11, "16"), TWELVE(12, "17"),
+        THIRTEEN(13, "18"), FOURTEEN(14, "22");
 
-        private int score;
-        private String ageGroup;
-        private String grade;
+        private final int score;
+        private final String ageGroup;
 
-        AgeGroup(int score, String ageGroup, String grade) {
+        AgeGroup(int score, String ageGroup) {
             this.score = score;
             this.ageGroup = ageGroup;
-            this.grade = grade;
         }
 
-        //Methods
-        public static String findAgeGroup (double apiScore) {
-            int score = (int) Math.ceil(apiScore);
+        /**
+         * Finds the corresponding age group based on readability scores.
+         *
+         * @param algorithmScore Represents the score from whichever readability algorithm used.
+         * */
+        public static String findAgeGroup(double algorithmScore) {
+            int score = (int) Math.round(algorithmScore);
 
             for (AgeGroup value : values()) {
                 if (value.score == score) {
@@ -31,32 +38,6 @@ public class AgeGroupEnum {
                 }
             }
             return null;
-        }
-
-
-        //Getters and setters
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
-        }
-
-        public String getAgeGroup() {
-            return ageGroup;
-        }
-
-        public void setAgeGroup(String ageGroup) {
-            this.ageGroup = ageGroup;
-        }
-
-        public String getGrade() {
-            return grade;
-        }
-
-        public void setGrade(String grade) {
-            this.grade = grade;
         }
     }
 }
